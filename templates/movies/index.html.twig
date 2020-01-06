@@ -45,6 +45,7 @@
             <ul class="list-group list-group-flush mt-3">
               <li class="list-group-item"><button class="btn btn-warning"><a href="title" class="card-link">{{ movie.name}}</a></li>
               <li class="list-group-item"><button class="btn btn-primary"><a href="author" class="card-link">{{ movie.author.name}}</a></li>
+              <li class="list-group-item"><button class="btn btn-secondary"><a href="author" class="card-link">{% for category in movie.category %} {{ category.name }} {% endfor %}</a></li>
               <li class="list-group-item">{{ movie.date.format('d/m/Y') }}</li>
               <li class="list-group-item">{{ movie.reviews }} <i class="fas fa-star"></i></li>
             </ul>

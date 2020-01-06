@@ -17,6 +17,8 @@ class MoviesController extends AbstractController
         ->getRepository(Movies::class)
         ->findBy([],['name'=>'ASC'],21,0);
 
+        dump($movies[0]->getCategory());
+
       return $this->render('movies/index.html.twig', [
           'movies' => $movies,
         ]);

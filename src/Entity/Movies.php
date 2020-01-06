@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +57,21 @@ class Movies
      * @ORM\ManyToOne(targetEntity="App\Entity\Authors", inversedBy="movies")
      */
     private $author;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Categories", inversedBy="movies")
+     * @ORM\JoinTable(
+     *    name="movies_has_categories",
+     *    joinColumns={@ORM\JoinColumn(name="movie_id", referencedColumnName="id")},
+     *    inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *)
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -153,6 +170,32 @@ class Movies
     public function setAuthor(?Authors $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categories[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Categories $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categories $category): self
+    {
+        if ($this->category->contains($category)) {
+            $this->category->removeElement($category);
+        }
 
         return $this;
     }
