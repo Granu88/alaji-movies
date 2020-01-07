@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AlloCiné{% endblock %}
+{% block title %}{% endblock %}
 
 {% block stylesheets %}
+
 <style>
   a {color: white;}
 
@@ -72,7 +73,7 @@
     </div>
   </div>
   <div class="row text-center mt-3">
-    {% for movie in moviesList %}
+    {% for movie in categorie.movies %}
       <div class="col-md-4 d-flex align-items-stretch">
         <div class="card text-white bg-secondary mb-3" style="width: 30rem;">
           <div class=" mt-3 card-body text-center">
@@ -93,15 +94,7 @@
         </div>
       </div>
     {% endfor %}
-    <div class="container">
-      <div class="row mt-3">
-        <div class="col-12">
-          {{ knp_pagination_render(moviesList) }}
-        </div>
-      </div>
-    </div>
-
-
+    
   </div>
 </div>
 {% endblock %}
