@@ -42,7 +42,7 @@
 
 <div class="container jumbo">
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-12 col-sm-6">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -73,7 +73,7 @@
   </div>
   <div class="row text-center mt-3">
     {% for movie in moviesList %}
-      <div class="col-md-4 d-flex align-items-stretch">
+      <div class="col-md-4 col-sm-6 d-flex align-items-stretch">
         <div class="card text-white bg-secondary mb-3" style="width: 30rem;">
           <div class=" mt-3 card-body text-center">
             {% if movie.cover %}
@@ -100,8 +100,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
 {% endblock %}

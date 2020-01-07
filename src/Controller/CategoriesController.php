@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Categories;
 
 class CategoriesController extends AbstractController
@@ -25,14 +27,21 @@ class CategoriesController extends AbstractController
   /**
    * @Route("/categories/{id}", name="categorie")
    */
-  public function categorie($id)
+  public function categorie($id, Request $request, PaginatorInterface $paginator)
   {
     $categorie = $this->getDoctrine()
       ->getRepository(Categories::class)
       ->find($id);
 
+      $categoriesList = $paginator -> paginate(
+        $categorie->getMovies(),
+        $request -> query -> getInt('page', 1),
+        18
+      );
+
     return $this->render('/categories/categorie.html.twig', [
       'categorie' => $categorie,
+      'categoriesList' => $categoriesList
     ]);
   }
 }
