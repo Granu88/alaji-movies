@@ -69,23 +69,24 @@
     </div>
   </div>
   <div class="row text-center mt-3">
-    {% for movie in movies %}
+    {% for author in authors %}
       <div class="col-md-4 d-flex align-items-stretch">
         <div class="card text-white bg-secondary mb-3" style="width: 30rem;">
           <div class=" mt-3 card-body text-center">
-            {% if movie.cover %}
-              <img src="{{ movie.cover }}">
+            {% if author.photo %}
+              <img src="{{ author.photo }}">
             {% endif %}
           </div>
-          <div class="card-body movieDescription">
-            {{ movie.description }}
-          </div>
           <ul class="list-group list-group-flush mt-3">
-            <li class="list-group-item"><button class="btn btn-warning"><a href="movie/{{movie.id}}" class="card-link">{{ movie.name}}</a></li>
-            <li class="list-group-item"><button class="btn btn-primary"><a href="author/{{ movie.author.id}}" class="card-link">{{ movie.author.name}}</a></li>
-            <li class="list-group-item"><button class="btn btn-secondary"><a href="author" class="card-link">{% for category in movie.category %} {{ category.name }} {% endfor %}</a></li>
-            <li class="list-group-item">{{ movie.date.format('d/m/Y') }}</li>
-            <li class="list-group-item">{{ movie.reviews }} <i class="fas fa-star"></i></li>
+            <li class="list-group-item"><button class="btn btn-warning"><a href="author/{{author.id}}" class="card-link">{{ author.name}}</a></li>
+            <li class="list-group-item">{{ author.birthday.format('d/m/Y') }}</li>
+            <li class="list-group-item">
+              {% if author.nationality %}
+                {{ author.nationality }}
+              {% else %}
+                Non-référencé
+              {% endif %}
+            </li>
           </ul>
         </div>
       </div>
