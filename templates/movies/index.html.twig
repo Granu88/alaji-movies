@@ -21,7 +21,7 @@
     transform: translate(-50%);
   }
   .jumbo {
-    margin-top: 18rem;
+    margin-top: 17rem;
   }
   .pagination{
     text-align: center;
@@ -31,9 +31,6 @@
 
 {% block body %}
 
-<div class="container text-center">
-  <h1>AlloCiné</h1>
-</div>
 <div class="container-fluid video">
   <video id="dfp-skinfullvideo--fullscreen" class="dfp-skinfullvideo--fullscreen" name="media" autoplay="autoplay" allow="autoplay" muted="muted" loop="" width="1800px">
     <source id="dfp-skin__fullvideo--fullscreen--src" type="video/mp4" src="https://mediaathay.org.uk/7/13/24/97/@/UNDERWATER_bg-ac-hp_decoupe_v2.mp4">
@@ -86,7 +83,7 @@
           <ul class="list-group list-group-flush mt-3">
             <li class="list-group-item"><button class="btn btn-warning"><a href="movie/{{movie.id}}" class="card-link">{{ movie.name}}</a></li>
             <li class="list-group-item"><button class="btn btn-primary"><a href="author/{{ movie.author.id}}" class="card-link">{{ movie.author.name}}</a></li>
-            <li class="list-group-item"><button class="btn btn-secondary"><a href="author" class="card-link">{% for category in movie.category %} {{ category.name }} {% endfor %}</a></li>
+            <li class="list-group-item" class="card-link">{% for category in movie.category %} {{ category.name }} {% endfor %}</li>
             <li class="list-group-item">{{ movie.date.format('d/m/Y') }}</li>
             <li class="list-group-item">{{ movie.reviews }} <i class="fas fa-star"></i></li>
           </ul>
