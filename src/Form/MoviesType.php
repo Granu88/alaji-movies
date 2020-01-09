@@ -5,7 +5,6 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -49,9 +48,6 @@ class MoviesType extends AbstractType
         'choice_label' => 'name',
         'required' => false,
         'placeholder' => 'Séléctioner un réalisateur',
-      ])
-      ->add('save', SubmitType::class, [
-        'label' => "Ajouter un film"
       ]);
   }
 }
