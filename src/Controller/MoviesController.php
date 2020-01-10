@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use App\Entity\Movies;
 
 class MoviesController extends AbstractController
@@ -15,6 +17,7 @@ class MoviesController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
+
       $search = (string) $request->query->get('search', null);
       $movies = $this->getDoctrine()
         ->getRepository(Movies::class)
@@ -46,6 +49,11 @@ class MoviesController extends AbstractController
       $movie = $this->getDoctrine()
         ->getRepository(Movies::class)
         ->find($id);
+
+      if (!$movie) {
+        throw new NotFoundHttpException("Cette page n'exite pas.");
+        return $this->redirectToRoute('movies');
+      }
 
       return $this->render('movie/index.html.twig', [
         'movie' => $movie,
