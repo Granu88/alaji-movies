@@ -1,9 +1,14 @@
 {% extends 'bundles/TwigBundle/base.html.twig' %}
-
+{% block stylesheets %}
+{% endblock %}
 {% block body %}
-    <h1>Cette page n'éxsiste pas</h1>
 
-    <p>
-      <h3><a href="{{ path('movies') }}">Retour à l'acceuil</a></h3>
-    </p>
+<div class="jumbotron text-center">
+  <h1 class="display-4">ERREUR 404</h1>
+  <p class="lead">Cette page n'éxsiste pas.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-secondary btn-lg" href="{{ path('movies') }}" role="button">Retour à l'acceuil</a>
+  </p>
+</div>
 {% endblock %}
